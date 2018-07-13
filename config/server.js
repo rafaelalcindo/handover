@@ -8,15 +8,10 @@ let expressSession   = require('express-validator');
 let app = express();
 app.set('view engine','ejs');
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(expressValidator());
-app.use(cookieParser());
-app.use(expressSession({
-    secret: 'vamos',
-    resave: true,
-    saveUninitialized: true
-}));
+
 
 consign()
     .include('app/routes')

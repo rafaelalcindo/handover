@@ -1,6 +1,7 @@
 
-
 exports.Pessoa = class Pessoa {
+
+        
     constructor() {}
 
     set nome(nome){ this._nome = nome }
@@ -10,7 +11,7 @@ exports.Pessoa = class Pessoa {
     get sobrenome(){ return this._sobrenome }
 
     set login(login){ this._login = login }
-    get login(){ this._login }
+    get login(){ return this._login }
 
     set senha(senha){ this._senha = senha }
     get senha(){ return this._senha }
@@ -33,9 +34,34 @@ exports.Pessoa = class Pessoa {
     set data_cad(data_cad){ this._data_cad = data_cad }
     get data_cad(){ this._data_cad }
 
+    set endereco(endereco) { this._endereco.push(endereco) }
+    get endereco() { return this._endereco }
+
+
+
+
+    //--------------------------------------------------------------
+
+    //================= Ligando outras Classes ==================
+
+    //---------------------------------------------------------------
+   
+
 
     //====================== Terminando Gets and Setters =================
 
+
+    //========================== Começando Os métodos de Cadastro ==========================
+
+    cadastrarUsuario(Pessoa){
+        return new Promise((resolve, reject)=>{
+            if(Pessoa.length === 0){
+                resolve(Pessoa);
+            }else {
+                reject();
+            }
+        })
+    }
     
 
 }

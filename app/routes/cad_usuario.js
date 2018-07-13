@@ -3,4 +3,9 @@ module.exports = (app) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         //app.app.controllers
     })
+
+    app.post('/cadastro/usuario', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.UsuarioController.cadastrarUsuario(app, req, res);
+    });
 }
