@@ -1,3 +1,5 @@
+var { PrepareQueryPessoa } = require('./PrepareQuery/PrepareQueryPessoa');
+var { ModelUsuario }       = require('./../models/modelUsuario');
 
 exports.Pessoa = class Pessoa {
 
@@ -53,15 +55,28 @@ exports.Pessoa = class Pessoa {
 
     //========================== Começando Os métodos de Cadastro ==========================
 
-    cadastrarUsuario(Pessoa){
+    cadastrarUsuario(connection, Pessoa){
+        let queryPessoa  = new PrepareQueryPessoa();
+        let queryMontada = queryPessoa.salvarPessoa(Pessoa);
+        let modelPessoa  = new ModelUsuario(connection);
+
         return new Promise((resolve, reject)=>{
-            if(Pessoa.length === 0){
-                resolve(Pessoa);
-            }else {
+            if(Object.keys(Pessoa).length !== 0){
+                modelPessoa.salvar(queryMontada, (error, result) => {
+                    if(error){
+                        reject();
+                    }
+                    if(result != ''){
+                        resolve(result);
+                    }
+                })
+
+            }else {                             
                 reject();
             }
         })
-    }
-    
+    } //////////////////////////// Fim do Método Cadastrar Pessoa //////////////////////////////////////////
+
+
 
 }
