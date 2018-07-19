@@ -1,3 +1,5 @@
+var { PrepareQueryPessoa } = require('./PrepareQuery/prepareQueryPessoa');
+var { ModelUsuario }       = require('./../models/modelUsuario');
 
 exports.Endereco = class Endereco{
     constructor(){ }
@@ -29,8 +31,33 @@ exports.Endereco = class Endereco{
     set lon(lon){ this._lon = lon }
     get lon(){ return this._lon }
 
-    set Pessoa(Pessoa){ this._Pessoa = Pessoa }
-    get Pessoa(){ return this.Pessoa }
+    set Pessoa(PessoaId){ this._PessoaId = PessoaId }
+    get Pessoa(){ return this._PessoaId }
+
+    // ===================================== Fim do Get and Set ======================================
+
+    ligarUsuarioEndereco(connection, Endereco) {
+        let queryEnderecoInsert = new PrepareQueryPessoa();
+        let queryMontada        = queryEnderecoInsert.ligarPessoaEndereco(Endereco);
+        let modelPessoa         = new ModelUsuario(connection);
+        console.log('Endereco: ', Endereco);
+        console.log('Query Montada', queryMontada);
+
+        return new Promise((resolve, reject) => {
+            if(Object.keys(Endereco).length !== 0 ) {
+                modelPessoa.salvar(queryMontada, (error, result) => {
+                    if(error){
+                        reject();
+                    }
+                    if(result != ''){
+                        resolve(result);
+                    }
+                })
+            } else {
+                reject();
+            }
+        });
+    }
 
     
 }

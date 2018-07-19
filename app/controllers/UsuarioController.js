@@ -1,4 +1,5 @@
 var { Pessoa }   = require('../classes/Pessoa');
+var   moment     = require('moment');
 var { Endereco } = require('../classes/Enderecos');
 
 module.exports.cadastrarUsuario = (app, req, res) => {
@@ -18,6 +19,8 @@ module.exports.cadastrarUsuario = (app, req, res) => {
         return;
     }
 
+    let timeStamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    
     let Pessoa1 = new Pessoa();
     Pessoa1.nome         = pessoa.nome;
     Pessoa1.sobrenome    = pessoa.sobrenome;
@@ -27,6 +30,7 @@ module.exports.cadastrarUsuario = (app, req, res) => {
     Pessoa1.tel          = pessoa.tel;
     Pessoa1.cel          = pessoa.cel;
     Pessoa1.foto_perfil  = pessoa.foto_perfil;
+    Pessoa1.data_cad     = timeStamp;
 
     let connection = app.config.dbConnectionMysql();
 
@@ -45,6 +49,7 @@ module.exports.cadastrarUsuario = (app, req, res) => {
 
 
 module.exports.cadastarEnderecoPessoa = (app, req, res) => {
+    
     let endereco = req.body;
 
     req.assert('nome_end','Digite o Seu endereco').len(3);
@@ -53,14 +58,30 @@ module.exports.cadastarEnderecoPessoa = (app, req, res) => {
     req.assert('bairro','Digite o seu bairro').notEmpty();
     req.assert('cidade','Coloque a sua cidade').notEmpty();
     req.assert('estado','Coloque o seu estado').notEmpty();
+    req.assert('PessoaId','Selecione o Usuario').notEmpty();
 
-    let errors = req.validationErrors;
-    if(errors) {
+    let errors = req.validationErrors();
+
+    if(errors) {        
         res.send({ validacao: errors });
         return;
     }
 
+    let enderecoPessoa = new Endereco();
+    enderecoPessoa.nome_end  = endereco.nome_end;
+    enderecoPessoa.numero    = endereco.numero;
+    enderecoPessoa.cep       = endereco.cep;
+    enderecoPessoa.bairro    = endereco.bairro;
+    enderecoPessoa.cidade    = endereco.cidade;
+    enderecoPessoa.estado    = endereco.estado;
+    enderecoPessoa.pais      = endereco.pais;
+    enderecoPessoa.Pessoa    = endereco.PessoaId;
+
     let connection = app.config.dbConnectionMysql();
+
+    enderecoPessoa.ligarUsuarioEndereco(connection, enderecoPessoa)
+        .then((endereco) => res.send({ endereco: endereco }))
+        .catch(() => res.send({ erro: 'erro ao ligar' }) )
 
 
 }

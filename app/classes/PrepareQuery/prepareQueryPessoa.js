@@ -1,4 +1,5 @@
 
+
 exports.PrepareQueryPessoa = class PrepareQueryPessoa {
 
 	constructor(){ }
@@ -12,7 +13,11 @@ exports.PrepareQueryPessoa = class PrepareQueryPessoa {
 		return query;
 	}
 
-
-
+	ligarPessoaEndereco(obj){
+		let query;
+		query = "insert into endereco (nome_end, numero, cidade, estado, pais, cep, bairro, idPessoa )";
+		query += "values ('"+obj.nome_end+"','"+obj.numero+"','"+obj.cidade+"','"+obj.estado+"','"+obj.pais+"' ,'"+obj.cep+"','"+obj.bairro+"', "+obj.Pessoa+" )";
+		return query;
+	}
 
 }

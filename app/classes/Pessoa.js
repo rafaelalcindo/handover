@@ -34,7 +34,7 @@ exports.Pessoa = class Pessoa {
     get foto_perfil(){ return this._foto_perfil }
 
     set data_cad(data_cad){ this._data_cad = data_cad }
-    get data_cad(){ this._data_cad }
+    get data_cad(){ return this._data_cad }
 
     set endereco(endereco) { this._endereco.push(endereco) }
     get endereco() { return this._endereco }

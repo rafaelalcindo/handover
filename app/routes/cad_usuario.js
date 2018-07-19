@@ -9,7 +9,7 @@ module.exports = (app) => {
         app.app.controllers.UsuarioController.cadastrarUsuario(app, req, res);
     });
 
-    app.post('/cadastro/endereco', (req, res) => {
+    app.post('/cadastro/usuario/endereco', (req, res) => {
     	res.setHeader('Access-Control-Allow-Origin', '*');
     	app.app.controllers.UsuarioController.cadastarEnderecoPessoa(app, req, res);
     })
