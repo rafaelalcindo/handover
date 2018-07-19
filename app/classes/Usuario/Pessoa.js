@@ -1,5 +1,5 @@
-var { PrepareQueryPessoa } = require('./PrepareQuery/PrepareQueryPessoa');
-var { ModelUsuario }       = require('./../models/modelUsuario');
+var { PrepareQueryPessoa } = require('./../PrepareQuery/PrepareQueryPessoa');
+var { ModelUsuario }       = require('./../../models/modelUsuario');
 
 exports.Pessoa = class Pessoa {
 

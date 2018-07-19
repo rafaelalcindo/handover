@@ -1,6 +1,7 @@
-var { Pessoa }   = require('../classes/Pessoa');
+var { Pessoa }   = require('../../classes/Usuario/Pessoa');
 var   moment     = require('moment');
-var { Endereco } = require('../classes/Enderecos');
+var { Endereco } = require('../../classes/Usuario/Enderecos');
+var { PessoaFisica } = require('../../classes/Usuario/PessoaFisica');
 
 module.exports.cadastrarUsuario = (app, req, res) => {
 
@@ -83,5 +84,32 @@ module.exports.cadastarEnderecoPessoa = (app, req, res) => {
         .then((endereco) => res.send({ endereco: endereco }))
         .catch(() => res.send({ erro: 'erro ao ligar' }) )
 
+
+}
+
+// =================================== Fim controller Cadastro Endereco ===================================
+
+module.exports.cadastroPessoaFisica = (app, req, res ) => { 
+    let pessoaFisica = req.body;
+
+    req.assert('PessoaId','Selecione o Usuario').notEmpty();
+    req.assert('cpf','Digite o CPF').notEmpty();
+
+    let errors = req.validationErrors();
+
+    if(errors) {
+        res.send({ validacao: errors });
+        return;
+    }
+
+    let pessoaFisicaLigar = new PessoaFisica();
+    pessoaFisicaLigar.cpf      = pessoaFisica.cpf;
+    pessoaFisicaLigar.idPessoa = pessoaFisica.PessoaId;
+    
+    let connection = app.config.dbConnectionMysql();
+
+    pessoaFisicaLigar.cadastrarPessoaFisica(connection, pessoaFisicaLigar)
+        .then((pessoaFisica) => res.send({ pessoaFisica: pessoaFisica }) )
+        .catch(() => res.send({ erro: 'erro ao ligar' }) );
 
 }

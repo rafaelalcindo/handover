@@ -20,4 +20,13 @@ exports.PrepareQueryPessoa = class PrepareQueryPessoa {
 		return query;
 	}
 
+	ligarPessoaPessoaFisica(obj) {
+		let query;
+		query = "insert into pessoa_fisica ( idPessoa, cpf )";
+		query += "value ("+obj.idPessoa+",'"+obj.cpf+"')";
+		return query;
+	}
+
+
+
 }

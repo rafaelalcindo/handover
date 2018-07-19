@@ -1,5 +1,5 @@
-var { PrepareQueryPessoa } = require('./PrepareQuery/prepareQueryPessoa');
-var { ModelUsuario }       = require('./../models/modelUsuario');
+var { PrepareQueryPessoa } = require('./../PrepareQuery/prepareQueryPessoa');
+var { ModelUsuario }       = require('./../../models/modelUsuario');
 
 exports.Endereco = class Endereco{
     constructor(){ }
