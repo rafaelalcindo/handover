@@ -4,6 +4,7 @@ let bodyParser  = require('body-parser');
 let expressValidator = require('express-validator');
 let cookieParser     = require('cookie-parser');
 let expressSession   = require('express-validator');
+let fileUpload       = require('express-fileupload');
 
 let app = express();
 app.set('view engine','ejs');
@@ -11,6 +12,7 @@ app.set('view engine','ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(expressValidator());
+app.use(fileUpload());
 
 
 consign()
