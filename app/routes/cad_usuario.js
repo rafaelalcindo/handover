@@ -19,4 +19,9 @@ module.exports = (app) => {
         app.app.controllers.Usuario.UsuarioController.cadastroPessoaFisica(app, req, res);
     });
 
+    app.post('/cadastro/mongo/cliente', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.Usuario.UsuarioMongoController.cadastrarUsuarioMongo(app, req, res);
+    });
+
 }

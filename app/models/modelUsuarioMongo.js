@@ -7,7 +7,11 @@
     idade: Number,
     endereco: String,
     cidade: String,
-    Estado: String
+    estado: String,
+    email: String,
+    login: String,
+    senha: String,
+    vendedor: Boolean
  });
 
 //var UsuarioShemas = mongoose.model('Usuario', UsuarioSchema, "collection");
