@@ -18,7 +18,18 @@ module.exports.cadastrarUsuarioMongo = (app, req, res) => {
     usuario.vendedor = req.body.vendedor;
 
     usuario.save()
-        .then((user) => console.log('Usuario: ', user))
+        .then((user) => res.send(user) )
         .catch( err => console.log(err));
+}
 
+module.exports.editarUsuarioMongo = (app, req, res) => {
+
+}
+
+module.exports.pegarUsuarioMongo = (app, req, res) => {
+
+}
+
+module.exports.deletarUsuarioMongo = (app, req, res) => {
+    
 }
