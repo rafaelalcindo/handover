@@ -17,8 +17,8 @@ app.use(fileUpload());
 
 consign()
     .include('app/routes')
-    .then('config/dbConnectionMysql.js')
     .then('config/dbConnectionMongoDB.js')
+    .then('config/dbConnectionMysql.js')    
     .then('app/models')
     .then('app/controllers')
     .into(app)

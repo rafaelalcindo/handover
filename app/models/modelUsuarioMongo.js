@@ -1,25 +1,16 @@
  const mongoose = require('mongoose');
-// const Schema   = mongoose.Schema;
+ const Schema   = mongoose.Schema;
 
-// const UsuarioSchema = new Schema({
-//     nome: {
-//         type: String,
-//         validate: {
-//             validator: (nome) => nome.length > 4,
-//             message: 'Nome precisa ter mais de 2 Characteres.'
-//         },
-//         required: [true, 'Nome é Obrigatório']
-//     },  
-//     pais: String,
-//     cidade: String,
-//     estado: String,
+ const UsuarioSchema = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    nome: String,
+    idade: Number,
+    endereco: String,
+    cidade: String,
+    Estado: String
+ });
 
-//     endereco: String,
-//     cep: String,
-//     foto_perfil: String
+//var UsuarioShemas = mongoose.model('Usuario', UsuarioSchema, "collection");
+//console.log('Schema: ',UsuarioShemas);
+module.exports = UsuarioSchema;
 
-// })
-
-// const Usuario = mongoose.model('usuario', UsuarioSchema);
-
-// module.exports = Usuario;
