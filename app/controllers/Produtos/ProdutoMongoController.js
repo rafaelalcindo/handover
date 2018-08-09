@@ -63,3 +63,11 @@ module.exports.mostrarProdutos = (app, req, res) => {
         .catch(error => res.status(500).json(error) )
 }
 
+
+module.exports.pegarProdutoIndividual = (app, req, res) => {
+    const idProduto = req.params.produtoId;
+    produtoModel.findById(idProduto)
+        .exec()
+        .then(produto => res.status(200).json(produto) )
+        .catch(error => res.status(500).json(error) )
+}

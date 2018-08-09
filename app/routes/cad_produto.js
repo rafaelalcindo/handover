@@ -10,4 +10,9 @@ module.exports = (app) => {
         app.app.controllers.Produtos.ProdutoMongoController.mostrarProdutos(app, req, res);
     });
 
+    app.get('/pegar/mongo/produto/:produtoId', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.Produtos.ProdutoMongoController.pegarProdutoIndividual(app, req, res);
+    })
+
 }
