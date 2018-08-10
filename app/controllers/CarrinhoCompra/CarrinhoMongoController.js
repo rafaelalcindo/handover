@@ -82,3 +82,18 @@ module.exports.InserirProdutoCarrinho = (app, req, res) => {
         })
         .catch(error => res.status(500).json(error) )
 }
+
+
+module.exports.acrescentarQuantProdutoCarrinho = (app, req, res) => {
+    idCarrinho = req.body.idCarrinho;
+    idProduto  = req.body.idProduto;
+
+    console.log('id Carrinho: ', idCarrinho);
+    console.log('id Produto: ', idProduto);
+
+    // carrinhoModel.findById(idCarrinho)
+    //     .exec()
+    //     .then(carrinho => {
+    //         console.log('carrinho: ', carrinho);
+    //     });
+}

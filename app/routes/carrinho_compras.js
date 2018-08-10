@@ -16,5 +16,10 @@ module.exports = (app) => {
         app.app.controllers.CarrinhoCompra.CarrinhoMongoController.InserirProdutoCarrinho(app, req, res);
     });
 
+    app.post('/carrinho/mongo/cliente/acrescentar/quantproduto', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.CarrinhoCompra.CarrinhoMongoController.acrescentarQuantProdutoCarrinho(app, req, res);
+    })
+
 
 }
