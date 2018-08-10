@@ -71,3 +71,5 @@ module.exports.pegarProdutoIndividual = (app, req, res) => {
         .then(produto => res.status(200).json(produto) )
         .catch(error => res.status(500).json(error) )
 }
+
+

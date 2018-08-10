@@ -6,7 +6,7 @@ const ProdutoSchema = require('./modelProdutoMongo');
 
 const CarrinhoSchema = new Schema({
     _id: Schema.Types.ObjectId,
-    quantidadeProduto: Number,
+    quantidadeProduto: {type: Number, default: 0},
     cliente: UsuarioSchema,
     produtos: [ProdutoSchema]
 });
