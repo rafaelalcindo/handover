@@ -9,6 +9,7 @@ const ProdutoSchema = new Schema({
     quantidade: Number,
     descricao: String,
     imagem: String,
+    quantPedido: Number,
     vendedor: UsuarioSchema
 });
 
