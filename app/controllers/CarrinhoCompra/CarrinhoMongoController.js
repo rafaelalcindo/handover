@@ -88,23 +88,32 @@ module.exports.acrescentarQuantProdutoCarrinho = (app, req, res) => {
     let idCarrinho   = req.body.idCarrinho;
     let idProduto    = req.body.idProduto;
     let quantProduto = req.body.quantProduto;
-    
 
-    console.log('id Carrinho: ', idCarrinho);
-    console.log('id Produto: ', idProduto);
+    // console.log('id Carrinho: ', idCarrinho);
+    // console.log('id Produto: ', idProduto);
     
     carrinhoModel.findById(idCarrinho)
         .exec()
         .then(carrinho => {
             let quantUpdateProduto = parseInt(carrinho.produtos[0].quantPedido ) + parseInt(quantProduto);
-            console.log('Quantidade Produto: ', carrinho.produtos[0].quantPedido);
+            //console.log('Quantidade Produto: ', carrinho.produtos[0].quantPedido);
             if(quantUpdateProduto <= 0){
                 res.status(500).json({'mensagem':'Produto zerado, deseja retiralo?'});
-            } else {
-                carrinhoModel.findById(idProduto)
-                    .exec()
-                    .then(produto => console.log('Produto: ', produto))
-                    .catch(error => console.log('Error: ', error) )
+            } else {                //carrinhoModel.update({'_id': carrinho._id, 'produtos._id': carrinho.produtos._id })
+                carrinho.produtos.forEach((element, i) => {
+                    //console.log('Element: ', element);
+                    // console.log('Index: ', i);
+                    // console.log('Element Id: ', element._id);
+                    // console.log('Id Produto: ', idProduto);
+                    if(element._id == idProduto){
+                       // console.log('Entrou Update: ', element._id);
+                        carrinhoModel.update({'_id': idCarrinho, 'produtos._id': element._id },{ $set: { 'produtos.$.quantPedido' : quantUpdateProduto } })
+                            .exec()
+                            .then(carrinhoUpdate => res.status(200).json(carrinhoUpdate) )                   
+                            .catch(error => res.status(500).json(error) )
+                    }
+                    
+                });
             }
 
         });
