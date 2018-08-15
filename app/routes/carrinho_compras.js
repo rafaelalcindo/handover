@@ -21,5 +21,10 @@ module.exports = (app) => {
         app.app.controllers.CarrinhoCompra.CarrinhoMongoController.acrescentarQuantProdutoCarrinho(app, req, res);
     })
 
+    app.post('/carrinho/mongo/cliente/remover/produto', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.CarrinhoCompra.CarrinhoMongoController.removerProdutoCarrinho(app, req, res);
+    })
+
 
 }

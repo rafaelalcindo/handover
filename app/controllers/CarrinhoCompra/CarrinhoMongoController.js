@@ -118,3 +118,17 @@ module.exports.acrescentarQuantProdutoCarrinho = (app, req, res) => {
 
         });
 }
+
+module.exports.removerProdutoCarrinho = (app, req, res) => {
+    let idCarrinho = req.body.idCarrinho;
+    let idProduto  = req.body.idProduto;
+
+    carrinhoModel.findById(idCarrinho)
+        .exec()
+        .then(carrinho => {
+            carrinhoModel.update({ '_id': idCarrinho }, { $pull : { 'produtos': { '_id': idProduto } } })
+                .exec()
+                .then(carrinho => res.status(200).json(carrinho) )
+                .catch(error => res.status(500).json(error) )
+         })
+}

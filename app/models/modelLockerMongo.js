@@ -9,9 +9,12 @@ const LockerSchema = new Schema({
     estado: String,
     cidade: String,
     cep: String,
+    endereco: String,
     referencia: String,
     imagemLocker: String,
-    produtos: [ProdutoSchema]
+    produtos: [ProdutoSchema],
+    lat: Number,
+    log: Number
 
 });
 
