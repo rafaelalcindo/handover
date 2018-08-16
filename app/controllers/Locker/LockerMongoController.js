@@ -106,3 +106,5 @@ module.exports.pegarHistoricoLocker = (app, req, res) => {
         .then(historicoLocker => res.status(200).json(historicoLocker) )
         .catch(error => res.status(500).json(error)  )
 }
+
+
