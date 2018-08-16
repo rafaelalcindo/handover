@@ -10,7 +10,7 @@ const HistoricoLockerSchema =  new Schema({
     data: { type: Date, default: Date.now },
     entregue: Boolean,
     locker: LockerSchema,
-    produto: [ProdutoSchema],
+    //produto: [ProdutoSchema],
     cliente: UsuarioSchema   
 });
 
