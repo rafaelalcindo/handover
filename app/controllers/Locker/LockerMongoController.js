@@ -63,6 +63,18 @@ module.exports.pegarInfoLocker = (app, req, res) => {
         .catch( error => res.status(500).json(error) )
 }
 
+module.exports.esvaziarLocker = (app, req, res) => {
+    let idLocker = req.params.idLocker
+
+    lockerModel.update({'_id': idLocker },{ $unset: { produtos: [] } })
+        .exec()
+        .then(result => res.status(200).json(result) )
+        .catch( error => res.status(500).json(error) );
+}
+
+
+
+// ========================================= Histórico Locker =================================================
 
 module.exports.AdicionarHistoricoLocker = (app, req, res) => {
     let idLocker  = req.body.idLocker;
