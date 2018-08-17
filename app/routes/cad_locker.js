@@ -15,6 +15,13 @@ module.exports = (app) => {
         app.app.controllers.Locker.LockerMongoController.pegarInfoLocker(app, req, res);
     } )
 
+    app.patch('/remover/mongo/locker/produtos/:idLocker', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        app.app.controllers.Locker.LockerMongoController.esvaziarLocker(app, req, res);
+    });
+
+    // ====================================== Locker Histórico ===================================================
+
     app.post('/cadastrar/mongo/lockerHistorico/inserir/historico', (req, res) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         app.app.controllers.Locker.LockerMongoController.AdicionarHistoricoLocker(app, req, res);
